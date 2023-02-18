@@ -1,3 +1,14 @@
 body {
-    background: red;
+    background-color: red;
 }
+
+.boards > * {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    width: 500px;
+    height: 500px;
+    cursor: pointer;
+    border: 2px solid black;
+}
+

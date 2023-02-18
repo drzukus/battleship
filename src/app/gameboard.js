@@ -55,7 +55,14 @@ const Gameboard = () => {
         return true;
     }
 
-    return { board, placeShip, receiveAttack, allSunk }
+    return { 
+        get board() {
+        return board;
+    },
+     placeShip,
+     receiveAttack,
+     allSunk
+    }
 }
 
 export { Gameboard }
