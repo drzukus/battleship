@@ -1,14 +1,53 @@
 body {
-    background-color: red;
+    
 }
 
-.boards > * {
+.boards {
+    display: flex;
+    gap: 4rem;
+    place-content: center;
+}
+
+#board1, #board2 {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
     width: 500px;
     height: 500px;
-    cursor: pointer;
     border: 2px solid black;
 }
 
+#board1 > *, #board2 > * {
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+@media (max-width: 1130px) {
+    .boards {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.ship-hit {
+    background-color: red;
+}
+
+.hit {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player1, .player2 {
+    margin-top: -1rem;
+}
+
+.restart-btn {
+    display: none;
+}
+
+.unclickable > * {
+    pointer-events: none;
+}

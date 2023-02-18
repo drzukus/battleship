@@ -18,7 +18,7 @@ const Gameboard = () => {
                 if (board[r][c + i] || board[r][c + i] === undefined) return false;
             }
             else if (dir === "v") {
-                if (board[c][r + i] || board[c][r + i] === undefined) return false;
+                if (board[r][c + i] || board[c][r + i] === undefined) return false;
             }
         }
         return true;
@@ -32,13 +32,13 @@ const Gameboard = () => {
                     board[r][c + i] = ship;
                 }
                 else if (dir === "v") {
-                    board[c][r + i] = ship;
+                    board[r + i][c] = ship;
                 }
             }
         }
     };
 
-    const receiveAttack = (c, r) => {
+    const receiveAttack = (r, c) => {
         if (typeof board[r][c] == "object") {
             board[r][c].hit();
             board[r][c] = "X";

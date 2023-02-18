@@ -1,17 +1,17 @@
 import { Gameboard } from "./gameboard.js"
 
-const Player = () => {
+const Player = (name) => {
     const playerBoard = Gameboard();
     let _turn = false;
 
-    const attack = (c, r, enemy) => {
+    const attack = (r, c, enemy) => {
         if (!_turn) return
-        enemy.playerBoard.receiveAttack(c, r);
+        enemy.playerBoard.receiveAttack(r, c);
     }
 
     const randomAttack = (enemy) => {
         if (!_turn) return
-        
+
         const c = Math.floor(Math.random() * 10);
         const r = Math.floor(Math.random() * 10);
 
@@ -20,8 +20,8 @@ const Player = () => {
             return
         }
 
-        enemy.playerBoard.receiveAttack(c, r);
-        return [c, r]
+        enemy.playerBoard.receiveAttack(r, c);
+        return [r, c]
     }
 
     
@@ -31,6 +31,9 @@ const Player = () => {
         },
         set turn(turn) {
             _turn = turn;
+        },
+        get name() {
+            return name
         },
         playerBoard, attack, randomAttack
     }
