@@ -2,6 +2,9 @@ const board1 = document.querySelector("#board1")
 const board2 = document.querySelector("#board2")
 const winMsg = document.querySelector(".win-msg");
 const restartBtn = document.querySelector(".restart-btn");
+const turnMsg = document.querySelector(".turn-msg");
+const coordsPrompt = document.querySelector(".ship-coords-prompt");
+const p1CoordsForm = document.querySelector(".coords-p1")
 
 
 const createCells = (board, player, enemy) => {
@@ -20,6 +23,11 @@ const createCells = (board, player, enemy) => {
 const renderBoards = (p1, p2) => {
     createCells(board1, p1, p2);
     createCells(board2, p2, p1);
+
+    board1.classList.add("unclickable");
+    board2.classList.add("unclickable");
+
+    renderCoordsEntry(p1);
 }
 
 const renderAttack = (e, player, enemy) => {
@@ -35,23 +43,14 @@ const renderAttack = (e, player, enemy) => {
 
         enemy.turn = false
         player.turn = true;
+
+        turnMsg.textContent = `${player.name}'s turn`
     }
 
     if (player.playerBoard.board[r][c] === "X") {
         e.target.classList.add("ship-hit");
         if (player.playerBoard.allSunk()) {
             endGame(enemy, player);
-        }
-    }
-}
-
-const renderShips = (player) => {
-    for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < 10; i++) {
-            if (typeof player.playerBoard.board[i][j] == "object") {
-
-            }
-
         }
     }
 }
@@ -89,5 +88,36 @@ const endGame = (winner, loser) => {
     restartBtn.addEventListener("click", () => {resetBoards(winner, loser)});
 }
 
+
+const renderCoordsEntry = (player) => {
+    const sizes = [5, 4, 3, 3, 2]
+    let counter = 1;
+    p1CoordsForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        if (counter < 5) {
+            updateCoordsPrompt(sizes[counter]);
+            counter++;
+            player.playerBoard.placeShip(Number(p1CoordsForm.elements["row"].value), Number(p1CoordsForm.elements["col"].value), sizes[counter - 2], p1CoordsForm.elements["dir"].value);
+            console.log(player.playerBoard.board)
+            renderShip(player);
+        } else {
+            removeCoordsEntry()
+        }
+        p1CoordsForm.reset();
+    })
+}
+
+const removeCoordsEntry = () => {
+    coordsPrompt.style.display = "none";
+    p1CoordsForm.style.display = "none";
+}
+
+const updateCoordsPrompt = (size) => {
+    coordsPrompt.textContent = coordsPrompt.textContent.slice(0, -1) + size.toString();
+}
+
+const renderShip = (player) => {
+    
+}
 
 export { renderBoards }

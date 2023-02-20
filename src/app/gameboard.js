@@ -12,21 +12,23 @@ const Gameboard = () => {
         }
     })();
 
-    const cellsValid = (c, r, length, dir) => {
+    const cellsValid = (r, c, length, dir) => {
         for (let i = 0; i < length; i++) {
             if (dir === "h") {
-                if (board[r][c + i] || board[r][c + i] === undefined) return false;
+                if (board[r][c + i] != 0 || board[r][c + i] === undefined) {
+                    return false;
+                }
             }
             else if (dir === "v") {
-                if (board[r][c + i] || board[c][r + i] === undefined) return false;
+                if (board[r + i][c] || board[r + i][c] === undefined) return false;
             }
         }
         return true;
     };
 
-    const placeShip = (c, r, length, dir) => {
-        if (cellsValid(c, r, length, dir)) {
-            const ship = Ship(length)
+    const placeShip = (r, c, length, dir) => {
+        if (cellsValid(r, c, length, dir)) {
+            const ship = Ship(length);
             for (let i = 0; i < ship.length; i++) {
                 if (dir === "h") {
                     board[r][c + i] = ship;
