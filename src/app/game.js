@@ -1,5 +1,5 @@
 import { Player } from "./player"
-import { renderBoards } from "./dom"
+import { renderDOM } from "./dom"
 
 
 const startGame = () => {
@@ -9,7 +9,7 @@ const startGame = () => {
     p1.turn = true;
 
 
-    renderBoards(p1, p2)
+    renderDOM(p1, p2)
 }
 
 export { startGame }

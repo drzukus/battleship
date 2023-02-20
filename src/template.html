@@ -8,13 +8,15 @@
 </head>
 <body>
     <h1>Battleship</h1>
-    <p class="turn-msg"></p>
+    <p class="turn-msg">Player 1's turn</p>
     <div class="boards">
+        <button class="begin-btn">Begin</button>
         <div class="player1">
             <h2>Player 1</h2>
             <div id="board1"></div>
             <form action="/" class="coords-p1">
-                <p class="ship-coords-prompt">Enter coordinates of ship bow and direction | size: 5</p>
+                <p class="coords-prompt-p1">Enter coordinates of ship bow and direction | size: 5</p>
+                <p class="placement-error-msg"></p>
                 <label for="row">Row</label>
                 <input type="number" min="0" max="9" id="row" name="row" required><br>
                 <label for="col">Column</label>
@@ -29,9 +31,22 @@
         <div class="player2">
             <h2>Player 2</h2>
             <div id="board2"></div>
+            <form action="/" class="coords-p2">
+                <p class="coords-prompt-p2">Enter coordinates of ship bow and direction | size: 5</p>
+                <p class="placement-error-msg"></p>
+                <label for="row">Row</label>
+                <input type="number" min="0" max="9" id="row" name="row" required><br>
+                <label for="col">Column</label>
+                <input type="number" min="0" max="9" id="col" name="col" required><br>
+                <input type="radio" value="h" id="hori" name="dir" required>
+                <label for="hori">Horizontal</label><br>
+                <input type="radio" value="v" id="verti" name="dir" required>
+                <label for="verti">Vertical</label><br>
+                <button type="submit">Place Ship</button>
+            </form>
         </div>
     </div>
-    <p class="win-msg"></p>
-    <button class="restart-btn">Restart</button>
+    <p class="win-msg hidden"></p>
+    <button class="restart-btn hidden">Restart</button>
 </body>
 </html>

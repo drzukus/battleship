@@ -10,17 +10,22 @@ body {
 
 #board1, #board2 {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
     width: 500px;
     height: 500px;
     border: 2px solid black;
 }
 
-#board1 > *, #board2 > * {
+.row {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.row > * {
     cursor: pointer;
     border: 1px solid black;
 }
+
 
 @media (max-width: 1130px) {
     .boards {
@@ -44,14 +49,18 @@ body {
     margin-top: -1rem;
 }
 
-.restart-btn {
-    display: none;
-}
-
 .unclickable > * {
     pointer-events: none;
 }
 
 .turn-msg {
     text-align: center;
+}
+
+.ship {
+    background-color: blue;
+}
+
+.hidden {
+    display: none;
 }

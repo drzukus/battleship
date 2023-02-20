@@ -15,7 +15,7 @@ const Gameboard = () => {
     const cellsValid = (r, c, length, dir) => {
         for (let i = 0; i < length; i++) {
             if (dir === "h") {
-                if (board[r][c + i] != 0 || board[r][c + i] === undefined) {
+                if (board[r][c + i] || board[r][c + i] === undefined) {
                     return false;
                 }
             }
@@ -37,6 +37,9 @@ const Gameboard = () => {
                     board[r + i][c] = ship;
                 }
             }
+            return true;
+        } else {
+            return false;
         }
     };
 
